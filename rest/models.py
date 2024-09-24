@@ -10,3 +10,14 @@ class Book(models.Model):
     price = models.IntegerField()
     published_date = models.DateField() 
     description = models.TextField()
+    
+# {
+#     "bid": 1,
+#     "title": "Django Book",
+#     "author": "Kim",
+#     "category": "Programming",
+#     "pages": 500,
+#     "price": 30000,
+#     "published_date": "2020-01-01",
+#     "description": "Django Book Description"
+# }

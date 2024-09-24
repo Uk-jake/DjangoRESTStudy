@@ -17,17 +17,21 @@ def booksAPI(request):
         serializer = BookSerializer(books, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
     elif request.method == 'POST':
-        serializer
-        if serializer.is_valie():
+        # POST 요청에서 받은 데이터를 기반으로 serializer 초기화
+        serializer = BookSerializer(data=request.data)
+        
+        if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 # 기본키 값 받아서 하나의 데이터를 찾아서 출력하는 함수
 @api_view(['GET'])
 def bookAPI(request, bid):
-    book = get_object_or_404
+    book = get_object_or_404(Book, bid=bid)
     serializer = BookSerializer(book)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
