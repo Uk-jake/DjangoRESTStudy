@@ -7,28 +7,19 @@
 </head>
 <body>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    const data = {
-        bid: 4,
-        title: "Ajax",
-        author: "Ajax",
-        category: "Ajax",
-        pages: 100,
-        price: 100,
-        published_date: "2020-01-01",
-        description: "Ajax"
-    }
-
-    fetch("../api/fbv/books/",{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+    // Axios가 로드된 후에 실행
+    axios.get("/api/fbv/books/")
+    .then((response) => {
+        alert(JSON.stringify(response.data)); // 데이터를 문자열로 변환하여 표시
     })
-    .then((response) => response.json())
-    .then((data) => {
-        alert(data)
+    .catch((error) => {
+        alert(JSON.stringify(error)); // 에러 객체를 문자열로 변환하여 표시
     })
+    .then(() => {
+        alert("무조건 수행");
+    });
 </script>
+
 </html>
