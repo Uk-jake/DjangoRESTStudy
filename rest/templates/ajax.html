@@ -13,14 +13,40 @@
     let request = new XMLHttpRequest();
 
     // 전체 데이터를 가져오는 요청을 생성
-    request.open('GET', '../api/fbv/books')
+    //request.open('GET', '../api/fbv/books')
 
-    // 요청 전송
-    request.send();
+    /// POST 요청 열기
+request.open('POST', '../api/fbv/books/');
+
+// FormData 객체 생성 및 데이터 추가 (오타 수정)
+let formdata = new FormData();
+formdata.append('bid', 3);
+formdata.append('title', 'Python Book');
+formdata.append('author', 'Lee');
+formdata.append('category', 'Programming');
+formdata.append('pages', 300);
+formdata.append('price', 20000);
+formdata.append('published_date', '2020-01-01');
+formdata.append('description', 'Python Book Description');
+
+// CSRF 토큰 설정 (다음 섹션 참고)
+
+// Content-Type 헤더 설정 생략 (브라우저가 자동 설정)
+
+// 요청 전송
+request.send(formdata);
+
 
     // 응답이 오면 호출될 함수 등록
     request.addEventListener("load", () => {
-        alert(request.responseText)
+        //alert(request.responseText)
+
+        // parse JSON
+        let data = JSON.parse(request.responseText)
+
+        for(let idx in data){
+            alert(data[idx].bid + " : " +data[idx].title)
+        }
     })
 
 </script>
