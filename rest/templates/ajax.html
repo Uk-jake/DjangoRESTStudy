@@ -8,12 +8,27 @@
 <body>
 </body>
 <script>
-    fetch("../api/fbv/books/")
+    const data = {
+        bid: 4,
+        title: "Ajax",
+        author: "Ajax",
+        category: "Ajax",
+        pages: 100,
+        price: 100,
+        published_date: "2020-01-01",
+        description: "Ajax"
+    }
+
+    fetch("../api/fbv/books/",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
     .then((response) => response.json())
     .then((data) => {
-        for(idx in data){
-            alert(data[idx].title)
-        }
+        alert(data)
     })
 </script>
 </html>
