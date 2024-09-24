@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Example</title>
+</head>
+<body>
+</body>
+<script>
+
+    //ajax 객체 생성
+    let request = new XMLHttpRequest();
+
+    // 전체 데이터를 가져오는 요청을 생성
+    request.open('GET', '../api/fbv/books')
+
+    // 요청 전송
+    request.send();
+
+    // 응답이 오면 호출될 함수 등록
+    request.addEventListener("load", () => {
+        alert(request.responseText)
+    })
+
+</script>
+</html>
